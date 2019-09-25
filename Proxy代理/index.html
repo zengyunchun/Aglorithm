@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+     输入文字
+     <input type="text" id="bind" >
+     <span id="model"></span>
+</body>
+
+<script>
+    let input = document.getElementById("bind");
+    let span = document.getElementById("model");
+
+    let obj = {};
+    // 通过代理实现双向绑定
+    const modelObj = new Proxy(obj, {
+        get: function(target, key, proxy) {
+            return Reflect.get(target, key, proxy);
+        },
+        set: function (target, key, value, proxy) {
+            if (key === "text") {
+                span.innerHTML = value;
+            }
+            return Reflect.set(target, key, value, proxy);
+        }
+    });
+
+
+    // let objProperty = Object.defineProperty({}, {
+    //     get: function(target, key, proxy) {
+    //         return Reflect.get(target, key, proxy);
+    //     },
+    //     set: function (target, key, value, proxy) {
+    //         if (key === "text") {
+    //             span.innerHTML = value;
+    //         }
+    //         return Reflect.set(target, key, value, proxy);
+    //     }
+    // });
+
+
+
+
+    input.addEventListener("keyup", function(e) {
+        modelObj.text = e.target.value;
+    })
+
+</script>
+
+</html>
+
+
+

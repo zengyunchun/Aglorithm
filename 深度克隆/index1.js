@@ -18,7 +18,7 @@ let deepCloneDFS = (origin, target = {}) => {
     for (const key in origin) {
         if (origin.hasOwnProperty(key)) {
             const item = origin[key];
-            if (typeof element === "object") {
+            if (typeof item === "object") {
                 // 根据当前对象拿到真实的值
                 target[key] = getTrueObj(item);
                 deepCloneDFS(item, target[key]);

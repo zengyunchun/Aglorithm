@@ -42,12 +42,12 @@ var binarayTree = {
 }
 
 // 非递归法遍历
-function DFS1 (node) {
+function DFS1(node) {
     var res = [];
     var stack = []; // 利用栈，后进先出
     if (node) {
         stack.push(node);
-        while(stack.length> 0) {
+        while (stack.length > 0) {
             let curr = stack.pop(); // 弹出最后一个
             res.push(curr.value);
             curr.right && stack.push(curr.right); // 这里要先压入右树 ！！！！
@@ -58,9 +58,9 @@ function DFS1 (node) {
 }
 
 // 递归法遍历, 其实这就是前序遍历啦
-function DFS2 (node) {
+function DFS2(node) {
     var res = [];
-    function dfs2 (node) {
+    function dfs2(node) {
         if (node) {
             res.push(node.value);
             dfs2(node.left);
@@ -71,6 +71,20 @@ function DFS2 (node) {
     return res;
 }
 
+// 递归，不用内部建立闭包，可以把结果当作参数传递进去的一种写法
+function DFS3(node, res = []) {
+    if (node) {
+        res.push(node.value); // 前序
+        DFS3(node.left, res);
+        //res.push(node.value); // 中序
+        DFS3(node.right, res);
+        //res.push(node.value); // 后序
 
-console.log("DFS1",DFS1(binarayTree));
-console.log("DFS2",DFS2(binarayTree));
+    }
+    return res;
+}
+
+
+console.log("DFS1", DFS1(binarayTree));
+console.log("DFS2", DFS2(binarayTree));
+console.log("DFS3", DFS3(binarayTree));

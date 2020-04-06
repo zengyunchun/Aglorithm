@@ -76,6 +76,7 @@ console.log(jasonDFS(tree, "112"));
 
 function jasonDFS(target, id) {
     const stack = [...target]; // 放入stack
+    console.log("stack",stack);
     do {
         const current = stack.pop(); // 弹出
         if (current.children) { // 有子节点压入stack

@@ -26,66 +26,6 @@ function swap(arr, i, j) {
 
 let array = [8,23,2,56,5,34,9,5,1,18];
 array.shell();
-<<<<<<< HEAD
-console.log(array); 
-
-
-
-
-// 自己手写
-Array.prototype.shell2 = function shell2 () {
-
-}
-
-function swap2(arr, i, j) {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-}
-
-let array2 = [8,23,2,56,5,34,9,5,1,18];
-array2.shell2();
-console.log(array2); 
-
-
-var a = "aa";
-function jason() {
-    var name = "jason"
-    function f() {
-        return name;
-    }
-   return f();
-}
-jason();
-
-var ExecuteContextStack = [
-    fContext = {
-        AO : {
-            arguments: {
-                length:0
-            }
-        },
-        scope: [fContext.AO, jasonContext.AO, globalContext.VO],
-        this: undefined
-    },
-    jasonContext = {
-        AO : {
-            name,
-            f
-        },
-        scope: [jasonContext.AO, globalContext.VO],
-        this: undefined
-    },
-    globalContext = {
-        VO: {
-            a,
-            jason
-        },
-        scope: [globalContext.VO],
-        this: globalContext.VO
-    }
-]
-=======
 console.log("1", array); 
 
 
@@ -124,9 +64,13 @@ function hillSort(array) {
 function shellSortJason(arr) {
     var length = arr.length;
     if (!Array.isArray(arr) || length <= 1) return arr;
+    // length>>1 二进制往右移动一位，相当于除以2
+    // 默认步长是数组的一半，每次缩小一半
     for (let gap = parseInt(length>>1); gap >= 1; gap =  parseInt(gap>>1)) {
+        // 从步长开始，往后面循环
         for (let i = gap; i < length; i++) {
             let j = i;
+            // 对比相隔gap的两个值，后面的大则交换两个值
             while (j - gap >= 0 && arr[j -gap] > arr[j]) {
                 swap(arr, j, j-gap);
                 j -= gap;
@@ -140,4 +84,3 @@ function shellSortJason(arr) {
 let array3 = [8,23,2,56,5,34,9,5,1,18];
 
 console.log("3",shellSortJason( array2));
->>>>>>> f39810c8f1d8c58a91c4e8267a303d33b0af79b1

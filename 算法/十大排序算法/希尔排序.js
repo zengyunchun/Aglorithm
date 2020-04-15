@@ -27,3 +27,60 @@ function swap(arr, i, j) {
 let array = [8,23,2,56,5,34,9,5,1,18];
 array.shell();
 console.log(array); 
+
+
+
+
+// 自己手写
+Array.prototype.shell2 = function shell2 () {
+
+}
+
+function swap2(arr, i, j) {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
+
+let array2 = [8,23,2,56,5,34,9,5,1,18];
+array2.shell2();
+console.log(array2); 
+
+
+var a = "aa";
+function jason() {
+    var name = "jason"
+    function f() {
+        return name;
+    }
+   return f();
+}
+jason();
+
+var ExecuteContextStack = [
+    fContext = {
+        AO : {
+            arguments: {
+                length:0
+            }
+        },
+        scope: [fContext.AO, jasonContext.AO, globalContext.VO],
+        this: undefined
+    },
+    jasonContext = {
+        AO : {
+            name,
+            f
+        },
+        scope: [jasonContext.AO, globalContext.VO],
+        this: undefined
+    },
+    globalContext = {
+        VO: {
+            a,
+            jason
+        },
+        scope: [globalContext.VO],
+        this: globalContext.VO
+    }
+]

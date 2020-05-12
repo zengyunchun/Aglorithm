@@ -28,6 +28,12 @@ function regexString(str) {
     })
 }
 
-console.log("processString: ", processString("aBcTeET"));
-console.log("transferString: ", transferString("aBcTeET"));
-console.log("regexString: ", regexString("aBcTeET"));
+function trans(str) {
+    let arra = str.split('');
+    return arra.map(v => ((v.toUpperCase() === v) ? v.toLowerCase() : v.toUpperCase())).join('');
+}
+
+
+console.log("processString: ", trans("aBcTeET"));
+console.log("transferString: ", trans("aBcTeET"));
+console.log("regexString: ", trans("aBcTeET"));

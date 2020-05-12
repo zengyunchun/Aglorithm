@@ -8,6 +8,7 @@
      let result = "";
      let temp = str[0];
      str = str.replace(/(\s*)/g, "").split(',');
+     console.log('str',str);
     //  str = str.split(',');
      str.forEach((v,i) => {
         //  temp += v;

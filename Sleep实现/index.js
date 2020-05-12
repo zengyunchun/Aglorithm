@@ -1,23 +1,21 @@
 // 实现一个sleep()函数
 
-
 // callback版本
-function sleepCallback(callback,timeout) {
+function sleepCallback(callback, timeout) {
     setTimeout(callback, timeout);
 }
 
-sleepCallback(()=> {
+sleepCallback(() => {
     console.log("sleepCallback")
-},1000);
-
+}, 1000);
 
 
 // promise版本
-function sleepPromise (timeout) {
-    return new Promise(resolve=>setTimeout(resolve, timeout));
+function sleepPromise(timeout) {
+    return new Promise(resolve => setTimeout(resolve, timeout));
 }
 
-sleepPromise(1000).then(()=> {
+sleepPromise(1000).then(() => {
     console.log("sleepPromise");
 })
 
@@ -26,7 +24,7 @@ function* sleepGenerator(timeout) {
     yield sleepPromise(timeout);
 }
 
-sleepGenerator(1000).next().value.then(()=>{
+sleepGenerator(1000).next().value.then(() => {
     console.log("sleepGenerator")
 })
 
@@ -35,7 +33,7 @@ async function sleepAsync(timeout) {
     await sleepPromise(timeout);
 }
 
-sleepAsync(1000).then(()=> {
+sleepAsync(1000).then(() => {
     console.log("sleepAsync");
 })
 

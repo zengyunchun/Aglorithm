@@ -10,11 +10,13 @@
      输入文字
      <input type="text" id="bind" >
      <span id="model"></span>
+     <span id="proxymodel"></span>
 </body>
 
 <script>
     let input = document.getElementById("bind");
     let span = document.getElementById("model");
+    let spanm = document.getElementById("proxymodel");
 
     let obj = {};
     // 通过代理实现双向绑定
@@ -29,6 +31,22 @@
             return Reflect.set(target, key, value, proxy);
         }
     });
+
+    let poxyObj = {};
+    const modelPoxy = new Proxy(poxyObj, {
+        get: function(target, key, proxy) {
+            console.log('get ', target, key, proxy);
+            return Reflect.get(target, key, proxy);
+        },
+        set: function(target, key, value, proxy) {
+            console.log('set ', target, key, proxy);
+            if (key == 'inputKey') {
+                spanm.innerHTML = value;
+            }
+            return Reflect.set(target, key, value, proxy);
+        }
+    });
+
 
 
     // let objProperty = Object.defineProperty({}, {
@@ -48,6 +66,7 @@
 
     input.addEventListener("keyup", function(e) {
         modelObj.text = e.target.value;
+        modelPoxy.inputKey = e.target.value;
     })
 
 </script>

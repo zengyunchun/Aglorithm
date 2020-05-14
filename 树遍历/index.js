@@ -20,12 +20,58 @@ const tree = [
                         name: "福田区",
                     }
                 ]
-            }
+            },
+            {
+                id: "12",
+                name: "广州市",
+                children: [
+                    {
+                        id: "121",
+                        name: "天河区",
+                    },
+                    {
+                        id: "122",
+                        name: "花都区",
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        id: "2",
+        name: "四川省",
+        children: [
+            {
+                id: "21",
+                name: "成都市",
+                children: [
+                    {
+                        id: "211",
+                        name: "金牛区",
+                    },
+                    {
+                        id: "212",
+                        name: "高新区",
+                    }
+                ]
+            },
+            {
+                id: "22",
+                name: "绵阳市",
+                children: [
+                    {
+                        id: "221",
+                        name: "涪城区",
+                    },
+                    {
+                        id: "222",
+                        name: "游仙区",
+                    }
+                ]
+            },
         ]
     }
-]
-
-
+];
 
 function bfs(target, id) {
     const quene = [...target]
@@ -90,3 +136,58 @@ function jasonDFS(target, id) {
         }
     } while (stack.length)
 }
+
+// 简单的深度优先遍历
+function jasonDFS1 (node) {
+    var stack = [];
+    if (node) {
+        stack = [...node];
+        while(stack.length > 0) {
+            var cur = stack.pop();
+            console.log("jasonDFS1", cur.name);
+            if (cur.children) {
+                stack.push(...cur.children);
+            }
+        }
+    }
+}
+jasonDFS1(tree);
+
+var treenode = {
+    id: 0,
+    name: "root",
+    children: tree
+}
+
+// 递归深度遍历
+function jasonDFS2 (node, nodeList = []) {
+    if (node != null) {
+        nodeList.push(node);
+        let children = node.children;
+        if (children) {
+            for (let i = 0; i < children.length; i++) {
+                jasonDFS2(children[i], nodeList);
+            }
+        }
+    }
+    return nodeList;
+}
+var nodelist = jasonDFS2(treenode);
+console.log("jasonDFS2", nodelist);
+
+
+// 简单的广度优先遍历
+function jasonBFS1 (node) {
+    var queue = [];
+    if (node) {
+        queue = [...node];
+        while(queue.length > 0) {
+            var cur = queue.shift();
+            console.log("jasonBFS1", cur.name);
+            if (cur.children) {
+                queue.push(...cur.children);
+            }
+        }
+    }
+}
+jasonBFS1(tree);

@@ -11,5 +11,5 @@ function moveZero(array) {
     return array;
 }
 
-console.log(moveZero([0,1])) 
-console.log(moveZero([0,1,0,0,0,0,3,0,25,0,4])) 
+console.log(moveZero([0,1]));
+console.log(moveZero([0,1,0,0,0,0,3,0,25,0,4]));

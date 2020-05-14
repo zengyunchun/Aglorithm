@@ -10,6 +10,8 @@ function isObject(obj) {
     return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
+// 由于对象属性书写时没有顺序，用set去重的时候会当做不同对象，
+// 所以需要根据keys排序后重新构建对象，这样能保证对象的属性顺序是一致的
 function reStructObject(obj) {
     let keys = Object.keys(obj).sort();  // 默认把对象的key排序
     var newObj = {};
